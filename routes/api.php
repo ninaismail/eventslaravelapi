@@ -31,6 +31,7 @@ Route::delete('/events/{event}', [EventsApiController::class, 'destroy']);
 Route::get('/events/{id}', [EventsApiController::class, 'getEvent']);
 Route::get('/newsletter', [NewsletterRegsApiController::class, 'index']);
 Route::post('/newsletter', [NewsletterRegsApiController::class, 'store']);
+Route::get('/events/{id}/comment', [CommentsApiController::class, 'index']);
 Route::post('/events/{id}/comment', [CommentsApiController::class, 'store']);
 
 
