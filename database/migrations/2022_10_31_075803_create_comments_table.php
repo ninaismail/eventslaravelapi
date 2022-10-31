@@ -11,15 +11,14 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up() 
+    public function up()
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email');
-            $table->integer('event_id')->unsigned()->index();
+            $table->integer('event_id')->unsigned();
+            $table->text('name');
+            $table->text('email');
             $table->text('body');
-            $table->softDeletes();
             $table->timestamps();
         });
     }

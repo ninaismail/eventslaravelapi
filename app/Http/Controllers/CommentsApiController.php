@@ -2,21 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comment;
 use Illuminate\Http\Request;
+use App\Models\Event;
+use App\Models\Comment;
 
 class CommentsApiController extends Controller
 {
-    public function index()
-    {
-        return Comment::all();
-    }
-    public function store(StoreCommentsRequest $request) {
-        return comment::create([
-            'name' => request('name'),
-            'email' => request('email'),
-            'body' => request('body'),
-        ]);
-    }
-    
+  public function index(event $event)
+  {
+    return response()->json($event->comments()->latest()->get());
+  }
+
+  public function store(Request $request, Event $event)
+  {
+    $comment = $event->comments()->create([
+      'body' => $request->body,
+      'name' => $request->name,
+      'email' => $request->email,
+     
+    ]);
+
+    return $comment->toJson();
+  }
 }

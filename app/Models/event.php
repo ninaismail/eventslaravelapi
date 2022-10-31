@@ -11,4 +11,8 @@ class event extends Model
     protected $fillable = [
         'title', 'decription', 'location','date','image','isFeatured'
     ];
+    public function comments()
+    {
+      return $this->hasMany('App\Models\Comment');
+    }
 }

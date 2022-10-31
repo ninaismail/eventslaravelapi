@@ -9,6 +9,11 @@ class comment extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name', 'email', 'body'
-    ];
+        'body', 'event_id', 'name', 'email'
+      ];
+    
+      public function event()
+      {
+        return $this->belongsTo('App\Models\Event');
+      }
 }
